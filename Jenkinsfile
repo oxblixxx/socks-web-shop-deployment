@@ -28,7 +28,7 @@ pipeline {
                     echo "Namespace already exists, skipping creation"
                 } else {
                     sh "kubectl create namespace $namespace"
-                    echo "Namespace created successfully"
+                    echo "Namespace created successfully now!"
                 }
                 }
             }
