@@ -18,12 +18,21 @@ pipeline {
             }
         }
 
-         stage('Create Namespace') {
+        stage('Create Namespace') {
             steps {
-                sh 'kubectl create namespace sock-shop'
-            }
-        }
+                script {
+                def namespace = 'sock-shop'
+                def namespaceExists = sh(script: "kubectl get namespace $namespace", returnStatus: true) == 0
 
+                if (namespaceExists) {
+                    echo "Namespace already exists, skipping creation"
+                } else {
+                    sh "kubectl create namespace $namespace"
+                    echo "Namespace created successfully"
+                }
+                }
+            }
+        }       
 
         stage("Deploy to EKS") {
             steps {

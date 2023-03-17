@@ -24,3 +24,14 @@ module "eks" {
         }
     }
 }
+
+# resource "kubernetes_namespace" "sock-shop" {
+#   metadata {
+#     name = "sock-shop"
+#   }
+
+#   lifecycle {
+#     ignore_changes = [metadata]
+#   }
+# }
+
