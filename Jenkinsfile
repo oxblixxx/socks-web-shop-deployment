@@ -17,6 +17,16 @@ pipeline {
                 }
             }
         }
+   stages {
+        stage('Create Namespace') {
+            steps {
+                sh 'kubectl create namespace sock-shop'
+            }
+        }
+        // Other stages and steps go here
+    }
+}
+
         stage("Deploy to EKS") {
             steps {
                 script {
