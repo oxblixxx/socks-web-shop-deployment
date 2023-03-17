@@ -17,23 +17,23 @@ pipeline {
                 }
             }
         }
-        
-//    stages {
-//         stage('Create Namespace') {
-//             steps {
-//             }
-//         }
-//         // Other stages and steps go here
-//     }
-// }
+
+   stages {
+        stage('Create Namespace') {
+            steps {
+            }
+                        sh 'kubectl create namespace sock-shop'
+        }
+        // Other stages and steps go here
+    }
+}
 
         stage("Deploy to EKS") {
             steps {
                 script {
                     dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
-                        sh 'kubectl create namespace sock-shop'
                         sh "aws eks update-kubeconfig --name myapp-eks-cluster"
-                        sh "kubectl apply -f eks-manifest.yaml"
+                        sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
                         // sh "kubectl apply -f nginx-service.yaml"
                     }
                 }
