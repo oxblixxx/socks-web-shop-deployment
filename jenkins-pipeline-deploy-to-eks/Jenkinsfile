@@ -18,14 +18,14 @@ pipeline {
             }
         }
 
-   stages {
-        stage('Create Namespace') {
-            steps {
-            }
-        }
-        // Other stages and steps go here
-    }
-}
+//    stages {
+//         stage('Create Namespace') {
+//             steps {
+//             }
+//         }
+//         // Other stages and steps go here
+//     }
+// }
 
         stage("Deploy to EKS") {
             steps {
