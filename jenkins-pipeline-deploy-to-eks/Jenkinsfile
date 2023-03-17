@@ -33,7 +33,7 @@ pipeline {
                 script {
                     dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
                         sh "aws eks update-kubeconfig --name myapp-eks-cluster"
-                        sh "kubectl apply -f eks-manifest.yaml"
+                        sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
                         // sh "kubectl apply -f nginx-service.yaml"
                     }
                 }
