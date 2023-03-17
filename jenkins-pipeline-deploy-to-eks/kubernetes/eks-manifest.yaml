@@ -249,6 +249,12 @@ metadata:
   name: front-end
   namespace: sock-shop
 spec:
+  type: loadbalancer
+  ports: 
+  - port: 80
+    name: http
+    protocol: TCP
+    targetPort: 8079
   replicas: 1
   selector:
     matchLabels:
