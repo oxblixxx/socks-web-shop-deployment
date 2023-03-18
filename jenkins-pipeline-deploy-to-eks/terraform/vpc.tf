@@ -38,6 +38,6 @@ module "myapp-vpc" {
 # }
 
 
-output "public_subnet_ids" {
-  value = module.myapp-vpc.public_subnets_ids
-}
+# output "public_subnet_ids" {
+#   value = module.myapp-vpc.public_subnets_ids
+# }
