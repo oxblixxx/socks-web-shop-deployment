@@ -37,6 +37,6 @@ module "eks" {
 #   }
 # }
 
- output "cluster_name" {
+ output "eks-cluster" {
         value = module.eks.cluster_name
-    }
+}

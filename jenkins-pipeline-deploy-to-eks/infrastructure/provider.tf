@@ -4,9 +4,9 @@ provider "aws" {
 }
 
 
-# data "aws_eks_cluster" "eks-cluster" {
-#   name = "socks-web-shop"
-# }
+data "aws_eks_cluster" "eks-cluster" {
+  name = module.eks.eks_cluster_name
+}
 
 terraform {
   required_providers {
@@ -20,13 +20,13 @@ terraform {
 
 
 provider "kubernetes" {
-  host                   = module.eks.cluster_name.endpoint
-  cluster_ca_certificate = base64decode(module.eks.cluster_name.certificate_authority[0].data)
+  host                   = data.aws_eks_cluster.eks-cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks-cluster.certificate_authority[0].data)
   # version          = "2.16.1"
 
   exec {
     api_version = "client.authentication.k8s.io/v1alpha1"
-    args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name.name]
+    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.eks-cluster.name]
     command     = "aws"
   }
 }
@@ -37,11 +37,11 @@ provider "kubernetes" {
 
 
 provider "kubectl" {
-  host                   = module.eks.cluster_name.endpoint
-  cluster_ca_certificate = base64decode(module.eks.cluster_name.certificate_authority[0].data)
+  host                   = data.aws_eks_cluster.eks-cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks-cluster.certificate_authority[0].data)
   exec {
     api_version = "client.authentication.k8s.io/v1alpha1"
-    args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name.name]
+    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.eks-cluster.name]
     command     = "aws"
   }
 }
