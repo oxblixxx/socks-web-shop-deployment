@@ -83,9 +83,9 @@ resource "kubernetes_service" "kube-service-socks" {
 
 
 # CHECK IF AWS KMS ALIAS EXIST
-data "aws_kms_alias" "existing_alias" {
-  name = "alias/eks/socks-web-shop"
-}
+# data "aws_kms_alias" "existing_alias" {
+#   name = "alias/eks/socks-web-shop"
+# }
 
 # resource "aws_kms_alias" "this" {
 #   # Only create the alias if it does not exist
