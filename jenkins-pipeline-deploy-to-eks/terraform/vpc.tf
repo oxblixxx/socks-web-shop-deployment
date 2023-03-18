@@ -28,7 +28,7 @@ module "myapp-vpc" {
 }
 
 
-output "private_subnet_names" {
-  # value = module.myapp-vpc.private_subnets_names
-  value = module.myapp-vpc.private_subnets[*].id
-}
+# output "private_subnet_names" {
+#   # value = module.myapp-vpc.private_subnets_names
+#   value = module.myapp-vpc.private_subnets[*].id
+# }
