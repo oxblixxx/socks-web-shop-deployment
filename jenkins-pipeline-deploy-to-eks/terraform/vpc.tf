@@ -33,6 +33,11 @@ module "myapp-vpc" {
 #   value = module.myapp-vpc.private_subnets[*].id
 # }
 
+# output "public_subnet_ids" {
+#   value = join(",", module.myapp-vpc.public_subnets[*].id)
+# }
+
+
 output "public_subnet_ids" {
-  value = join(",", module.myapp-vpc.public_subnets[*].id)
+  value = module.myapp-vpc.public_subnets_ids
 }
