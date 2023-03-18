@@ -249,12 +249,6 @@ metadata:
   name: front-end
   namespace: sock-shop
 spec:
-  type: loadbalancer
-  ports: 
-  - port: 80
-    name: http
-    protocol: TCP
-    targetPort: 8079
   replicas: 1
   selector:
     matchLabels:
@@ -300,6 +294,25 @@ spec:
           periodSeconds: 3
       nodeSelector:
         beta.kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: front-end
+  annotations:
+        prometheus.io/scrape: 'true'
+  labels:
+    name: front-end
+  namespace: sock-shop
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    name: http
+    protocol: TCP
+    targetPort: 8079
+  selector:
+     name: front-end  
 ---
 apiVersion: apps/v1
 kind: Deployment

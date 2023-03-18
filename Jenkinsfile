@@ -25,7 +25,7 @@ pipeline {
                 def namespaceExists = sh(script: "kubectl get namespace $namespace", returnStatus: true) == 0
 
                 if (namespaceExists) {
-                    echo "Namespace already exists, skipping creation!!"
+                    echo "Namespace already exists, skipping creation!!!!!"
                 } else {
                     sh "kubectl create namespace $namespace"
                     echo "Namespace created successfully now!"
