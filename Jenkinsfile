@@ -18,6 +18,17 @@ pipeline {
             }
         }
 
+         stage("deploy socks && web ]") {
+            steps {
+                script {
+                    dir('jenkins-pipeline-deploy-to-eks/terraform/deployment') {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
+
         // stage('Create Namespace') {
         //     steps {
         //         script {
@@ -40,6 +51,7 @@ pipeline {
                     dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
                         sh "aws eks update-kubeconfig --name myapp-eks-cluster"
                         sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
+                        sh "kubectl apply -f ../../web/ --namespace web-namespace"
                         // sh "kubectl apply -f nginx-service.yaml"
                     }
                 }
