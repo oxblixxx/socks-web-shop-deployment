@@ -23,6 +23,11 @@ module "eks" {
             instance_types = ["t2.xlarge"]
         }
     }
+
+    output "cluster_name" {
+        value = module.eks.cluster_name
+    }
+
 }
 
 # resource "kubernetes_namespace" "sock-shop" {
