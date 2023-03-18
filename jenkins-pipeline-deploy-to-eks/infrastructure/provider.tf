@@ -5,7 +5,7 @@ provider "aws" {
 
 
 data "aws_eks_cluster" "eks-cluster" {
-  name = "socks-web-shop"
+  name = "eks-cluster"
 }
 
 terraform {
