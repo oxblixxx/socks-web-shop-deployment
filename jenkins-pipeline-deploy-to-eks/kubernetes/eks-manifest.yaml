@@ -312,7 +312,7 @@ spec:
     protocol: TCP
     targetPort: 8079
   selector:
-     name: front-end  
+    name: front-end  
 ---
 apiVersion: apps/v1
 kind: Deployment
