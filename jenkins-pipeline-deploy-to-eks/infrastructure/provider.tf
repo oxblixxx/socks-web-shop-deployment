@@ -5,7 +5,7 @@ provider "aws" {
 
 
 data "aws_eks_cluster" "eks-cluster" {
-  name = module.eks.eks_cluster_name
+  name = module.eks.cluster_name
 }
 
 terraform {
