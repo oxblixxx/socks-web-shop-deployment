@@ -10,7 +10,7 @@ pipeline {
         stage("Create an EKS Cluster") {
             steps {
                 script {
-                    dir('jenkins-pipeline-deploy-to-eks/terraform') {
+                    dir('jenkins-pipeline-deploy-to-eks/infrastructure') {
                         sh "terraform init"
                         sh "terraform apply -auto-approve"
                     }
