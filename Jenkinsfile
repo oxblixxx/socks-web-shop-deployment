@@ -18,21 +18,21 @@ pipeline {
             }
         }
 
-        stage('Create Namespace') {
-            steps {
-                script {
-                def namespace = 'sock-shop'
-                def namespaceExists = sh(script: "kubectl get namespace $namespace", returnStatus: true) == 0
+        // stage('Create Namespace') {
+        //     steps {
+        //         script {
+        //         def namespace = 'sock-shop'
+        //         def namespaceExists = sh(script: "kubectl get namespace $namespace", returnStatus: true) == 0
 
-                if (namespaceExists) {
-                    echo "Namespace already exists, skipping creation!!!!!"
-                } else {
-                    sh "kubectl create namespace $namespace"
-                    echo "Namespace created successfully now!"
-                }
-                }
-            }
-        }       
+        //         if (namespaceExists) {
+        //             echo "Namespace already exists, skipping creation!!!!!"
+        //         } else {
+        //             sh "kubectl create namespace $namespace"
+        //             echo "Namespace created successfully now!"
+        //         }
+        //         }
+        //     }
+        // }       
 
         stage("Deploy to EKS") {
             steps {
