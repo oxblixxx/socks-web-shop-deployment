@@ -7,16 +7,16 @@ pipeline {
         AWS_DEFAULT_REGION = "us-east-1"
     }
     stages {
-        stage("Create an EKS Cluster") {
-            steps {
-                script {
-                    dir('jenkins-pipeline-deploy-to-eks/infrastructure') {
-                        sh "terraform init"
-                        sh "terraform apply -auto-approve"
-                    }
-                }
-            }
-        }
+        // stage("Create an EKS Cluster") {
+        //     steps {
+        //         script {
+        //             dir('jenkins-pipeline-deploy-to-eks/infrastructure') {
+        //                 sh "terraform init"
+        //                 sh "terraform apply -auto-approve"
+        //             }
+        //         }
+        //     }
+        // }
 
          stage("deploy socks && web ]") {
             steps {

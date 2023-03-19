@@ -6,8 +6,8 @@ module "eks" {
 
     cluster_endpoint_public_access  = true
 
-    vpc_id = module.myapp-vpc.vpc_id
-    subnet_ids = module.myapp-vpc.public_subnets
+    vpc_id = module.socks-vpc.vpc_id
+    subnet_ids = module.socks-vpc.public_subnets
 
     tags = {
         environment = "development"
