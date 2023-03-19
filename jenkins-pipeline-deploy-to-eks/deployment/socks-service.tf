@@ -16,10 +16,11 @@
 
 
 
-# resource "kubernetes_namespace" "kube-namespace-socks" {
-#   metadata {
-#     name = "sock-shop"
-#   }
+resource "kubernetes_namespace" "kube-namespace-socks" {
+  metadata {
+    name = "sock-shop"
+  }
+}
 
 #   count = length(kubernetes_namespace.kube-namespace-socks.*.id) == 0 ? 1 : 0
 #   # Set the namespace to depend on the null_resource to ensure it is created first
@@ -46,11 +47,11 @@ data "kubectl_file_documents" "docs" {
 
 
 ## Pull sock-shop namespace
-data "kubernetes_namespace" "socks-shop" {
-  metadata {
-    name = "sock-shop"
-  }
-}
+# data "kubernetes_namespace" "socks-shop" {
+#   metadata {
+#     name = "sock-shop"
+#   }
+# }
 
 resource "kubectl_manifest" "kube-deployment-socks" {
     for_each  = data.kubectl_file_documents.docs.manifests
@@ -62,7 +63,7 @@ resource "kubectl_manifest" "kube-deployment-socks" {
 resource "kubernetes_service" "kube-service-socks" {
   metadata {
     name      = "front-end"
-    namespace = data.kubernetes_namespace.socks-shop.id
+    namespace = kubernetes_namespace.kube-namespace-socks.id
     annotations = {
       "prometheus.io/scrape" = "true"
     }

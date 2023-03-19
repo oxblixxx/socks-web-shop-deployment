@@ -23,6 +23,7 @@ pipeline {
                 script {
                     dir('jenkins-pipeline-deploy-to-eks/terraform/deployment') {
                         sh "terraform init"
+                        sh "terraform init -upgrade"
                         sh "terraform apply -auto-approve -force"
                     }
                 }
