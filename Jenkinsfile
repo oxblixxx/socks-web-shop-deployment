@@ -24,7 +24,7 @@ pipeline {
                     dir('jenkins-pipeline-deploy-to-eks/terraform/deployment') {
                         sh "terraform init"
                         // sh "terraform init -upgrade"
-                        sh "terraform apply -auto-approve -force"
+                        sh "terraform apply --auto-approve -force"
                     }
                 }
             }
@@ -36,7 +36,7 @@ stage("deploy monitoring]") {
                     dir('jenkins-pipeline-deploy-to-eks/terraform/monitoring') {
                         sh "terraform init"
                         sh "terraform init -upgrade"
-                        sh "terraform apply -auto-approve -force"
+                        sh "terraform apply --auto-approve -force"
                     }
                 }
             }
