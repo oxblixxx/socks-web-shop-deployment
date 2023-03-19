@@ -18,13 +18,23 @@ pipeline {
         //     }
         // }
 
+         stage('someStage') {
+            steps {
+                catchError {
+                    build job: 'system-check-flow'
+                }
+                echo currentBuild.result
+            }
+        }        
+
+
          stage("deploy socks && web ]") {
             steps {
                 script {
                     dir('jenkins-pipeline-deploy-to-eks/terraform/deployment') {
                         sh "terraform init"
-                        // sh "terraform init -upgrade"
-                        sh "terraform apply --auto-approve -force"
+                        sh "terraform init -upgrade"
+                        sh "terraform apply --auto-approve"
                     }
                 }
             }
@@ -36,7 +46,7 @@ stage("deploy monitoring]") {
                     dir('jenkins-pipeline-deploy-to-eks/terraform/monitoring') {
                         sh "terraform init"
                         sh "terraform init -upgrade"
-                        sh "terraform apply --auto-approve -force"
+                        sh "terraform apply --auto-approve"
                     }
                 }
             }
