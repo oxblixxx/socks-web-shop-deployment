@@ -26,11 +26,11 @@
 #   # depends_on = [null_resource.create_namespace]
 # }
 
-resource "kubernetes_namespace" "kube-namespace-socks" {
-  metadata {
-    name = "sock-shop"
-  }
-}
+# resource "kubernetes_namespace" "kube-namespace-socks" {
+#   metadata {
+#     name = "sock-shop"
+#   }
+# }
 
 # resource "kubernetes_namespace" "kube-namespace-socks" {
 #   metadata {
