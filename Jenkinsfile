@@ -31,7 +31,7 @@ pipeline {
          stage("deploy socks && web ]") {
             steps {
                 script {
-                    dir('jenkins-pipeline-deploy-to-eks/terraform/deployment') {
+                    dir('jenkins-pipeline-deploy-to-eks/deployment') {
                         sh "terraform init"
                         sh "terraform init -upgrade"
                         sh "terraform apply --auto-approve"
@@ -43,7 +43,7 @@ pipeline {
 stage("deploy monitoring]") {
             steps {
                 script {
-                    dir('jenkins-pipeline-deploy-to-eks/terraform/monitoring') {
+                    dir('jenkins-pipeline-deploy-to-eks/monitoring') {
                         sh "terraform init"
                         sh "terraform init -upgrade"
                         sh "terraform apply --auto-approve"
