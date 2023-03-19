@@ -9,3 +9,8 @@ variable "docker-image" {
   description = "docker image"
   default     = "oxblixxx/web"
 }
+
+# variable "create_kms_alias" {
+#   type    = bool
+#   default = true
+# }
