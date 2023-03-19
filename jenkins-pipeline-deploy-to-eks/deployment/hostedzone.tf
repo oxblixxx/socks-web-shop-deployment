@@ -1,11 +1,11 @@
 # Route 53 and sub-domain name setup
 
 resource "aws_route53_zone" "web" {
-  name = "web.bemtlava.me"
+  name = "web.oxlava.tech"
 }
 
 resource "aws_route53_zone" "socks-web" {
-  name = "socks.bemtlava.me"
+  name = "socks.oxlava.tech"
 }
 
 # Get the zone_id for the load balancer
@@ -20,7 +20,7 @@ data "aws_elb_hosted_zone_id" "elb_zone_id" {
 
 resource "aws_route53_record" "portfolio-record" {
   zone_id = aws_route53_zone.web.zone_id
-  name    = "web.bemtlava.me"
+  name    = "web.oxlava.tech"
   type    = "A"
 
   alias {
@@ -34,7 +34,7 @@ resource "aws_route53_record" "portfolio-record" {
 
 resource "aws_route53_record" "socks-record" {
   zone_id = aws_route53_zone.socks-web.zone_id
-  name    = "socks.bemtlava.me"
+  name    = "socks.oxlava.tech"
   type    = "A"
 
   alias {

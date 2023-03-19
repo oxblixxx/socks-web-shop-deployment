@@ -1,3 +1,6 @@
+### This code is to setup monitoring with
+### prometheus using helm chart
+
 # AWS provider
 
 provider "aws" {
@@ -15,6 +18,7 @@ terraform {
   }
 }
 
+# Store state file to backend
 terraform {
   backend "s3" {
     bucket = "new-state-file-west-2-516"
@@ -22,6 +26,8 @@ terraform {
    region = "us-west-2"
   }
 }
+
+
 
 # Kubernetes provider configuration
 

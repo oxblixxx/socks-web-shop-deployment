@@ -30,6 +30,19 @@ pipeline {
             }
         }
 
+stage("deploy socks && web ]") {
+            steps {
+                script {
+                    dir('jenkins-pipeline-deploy-to-eks/terraform/monitoring') {
+                        sh "terraform init"
+                        sh "terraform init -upgrade"
+                        sh "terraform apply -auto-approve -force"
+                    }
+                }
+            }
+        }
+
+
         // stage('Create Namespace') {
         //     steps {
         //         script {
