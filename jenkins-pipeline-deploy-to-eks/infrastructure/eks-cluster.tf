@@ -9,7 +9,7 @@ module "eks" {
     vpc_id = module.myapp-vpc.vpc_id
     subnet_ids = module.myapp-vpc.public_subnets
 
-    map_roles = false
+    create_kms_key_alias = false
 
     tags = {
         environment = "development"
