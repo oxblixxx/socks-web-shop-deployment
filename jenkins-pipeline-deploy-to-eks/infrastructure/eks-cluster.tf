@@ -9,8 +9,6 @@ module "eks" {
     vpc_id = module.myapp-vpc.vpc_id
     subnet_ids = module.myapp-vpc.public_subnets
 
-    create_kms_key_alias = false
-
     tags = {
         environment = "development"
         application = "myapp"
@@ -28,6 +26,14 @@ module "eks" {
 
    
 }
+
+resource "null_resource" "kms_alias_dependency" {
+  count = 0
+  depends_on = [module.eks.kms_alias]
+}
+
+
+
 
 # resource "kubernetes_namespace" "sock-shop" {
 #   metadata {
