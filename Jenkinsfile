@@ -30,7 +30,7 @@ pipeline {
             }
         }
 
-stage("deploy socks && web ]") {
+stage("deploy monitoring]") {
             steps {
                 script {
                     dir('jenkins-pipeline-deploy-to-eks/terraform/monitoring') {
