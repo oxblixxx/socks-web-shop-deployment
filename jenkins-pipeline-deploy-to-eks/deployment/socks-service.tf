@@ -44,6 +44,14 @@ data "kubectl_file_documents" "docs" {
     content = file("eks-manifest.yaml")
 }
 
+
+## Pull sock-shop namespace
+data "kubernetes_namespace" "socks-shop" {
+  metadata {
+    name = "sock-shop"
+  }
+}
+
 resource "kubectl_manifest" "kube-deployment-socks" {
     for_each  = data.kubectl_file_documents.docs.manifests
     yaml_body = each.value
@@ -54,7 +62,7 @@ resource "kubectl_manifest" "kube-deployment-socks" {
 resource "kubernetes_service" "kube-service-socks" {
   metadata {
     name      = "front-end"
-    namespace = kubernetes_namespace.kube-namespace-socks.id
+    namespace = data.kubernetes_namespace.socks-shop.id
     annotations = {
       "prometheus.io/scrape" = "true"
     }
