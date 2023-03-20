@@ -8,24 +8,32 @@ pipeline {
     }
     stages {
         stage("Create an EKS Cluster") {
-            steps {
-                script {
-                    dir('jenkins-pipeline-deploy-to-eks/infrastructure') {
-                        sh "terraform init"
-                        sh "terraform init -upgrade"
-                        sh "terraform apply -auto-approve"
-                    }
+            when {
+                expression { choice == '1'}
                 }
-            }
-        }
+                steps {
+                    script {
+                       dir('jenkins-pipeline-deploy-to-eks/infrastructure') {
+                          sh "terraform init"
+                      //    sh "terraform destroy -target=module.eks.module.kms.aws_kms_alias.this[0]"
+                          sh "terraform init -upgrade"
+                          sh "terraform apply -auto-approve"
+                         }
+                     }
+               }
+          }
 
                 
 
 
          stage("deploy socks && web ]") {
-            steps {
-                script {
-                    dir('jenkins-pipeline-deploy-to-eks/deployment') {
+              when {
+                expression { choice == '2'}
+                }
+                steps {
+
+                  script {
+                     dir('jenkins-pipeline-deploy-to-eks/deployment') {
                         sh "terraform init"
                         sh "terraform init -upgrade"
                         sh "terraform apply --auto-approve"
@@ -34,9 +42,12 @@ pipeline {
             }
         }
 
-stage("deploy monitoring]") {
-            steps {
-                script {
+         stage("deploy monitoring]") {
+             when {
+                expression { choice == '3'}
+                }
+                steps {
+                  script {
                     dir('jenkins-pipeline-deploy-to-eks/monitoring') {
                         sh "terraform init"
                         sh "terraform init -upgrade"
@@ -64,9 +75,14 @@ stage("deploy monitoring]") {
         // }       
 
         stage("Deploy to EKS") {
-            steps {
-                script {
-                    dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
+            when {
+                expression { choice == '4'}
+                  }
+            
+              steps {
+                
+                  script {
+                     dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
                         sh "aws eks update-kubeconfig --name myapp-eks-cluster"
                         sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
                         sh "kubectl apply -f ../../web/ --namespace web-namespace"
