@@ -28,7 +28,7 @@ pipeline {
 
          stage("deploy socks && web ]") {
               when {
-                expression { choice == '1'}
+                expression { choice == '2'}
                 }
                 steps {
 
@@ -44,7 +44,7 @@ pipeline {
 
          stage("deploy monitoring]") {
              when {
-                expression { choice == '1'}
+                expression { choice == '3'}
                 }
                 steps {
                   script {
