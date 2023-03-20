@@ -16,11 +16,11 @@
 
 
 
-resource "kubernetes_namespace" "kube-namespace-socks" {
-  metadata {
-    name = "sock-shop"
-  }
-}
+# resource "kubernetes_namespace" "kube-namespace-socks" {
+#   metadata {
+#     name = "sock-shop"
+#   }
+# }
 
 #   count = length(kubernetes_namespace.kube-namespace-socks.*.id) == 0 ? 1 : 0
 #   # Set the namespace to depend on the null_resource to ensure it is created first
@@ -63,7 +63,7 @@ resource "kubectl_manifest" "kube-deployment-socks" {
 resource "kubernetes_service" "kube-service-socks" {
   metadata {
     name      = "front-end"
-    namespace = kubernetes_namespace.kube-namespace-socks.id
+    namespace = "sock-shop"
     annotations = {
       "prometheus.io/scrape" = "true"
     }

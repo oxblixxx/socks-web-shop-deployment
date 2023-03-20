@@ -5,7 +5,12 @@ provider "aws" {
 
 
 data "aws_eks_cluster" "eks-cluster" {
-  name = "socks-web-shop"
+  name = "eks-cluster"
+}
+
+data "aws_eks_cluster_auth" "eks-cluster" {
+  # specify the name of your EKS cluster
+  name = "eks-cluster"
 }
 
 terraform {
@@ -22,7 +27,7 @@ terraform {
 provider "kubernetes" {
   host                   = data.aws_eks_cluster.eks-cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks-cluster.certificate_authority[0].data)
-  # version          = "2.16.1"
+  version          = "2.16.1"
 
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
@@ -38,6 +43,7 @@ provider "kubernetes" {
 
 provider "kubectl" {
   load_config_file  = false
+  token = data.aws_eks_cluster_auth.eks-cluster.token
   host                   = data.aws_eks_cluster.eks-cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks-cluster.certificate_authority[0].data)
   exec {
