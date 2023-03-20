@@ -77,7 +77,7 @@ pipeline {
         stage("Deploy to EKS") {
             steps {
                 when {
-                expression { choice == '3'}
+                expression { choice == '4'}
                     }
                   script {
                      dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
