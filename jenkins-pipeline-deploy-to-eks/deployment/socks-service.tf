@@ -33,11 +33,11 @@
 #   }
 # }
 
-# resource "kubernetes_namespace" "kube-namespace-socks" {
-#   metadata {
-#     name = "sock-shop"
-#   }
-# }
+resource "kubernetes_namespace" "kube-namespace-socks" {
+  metadata {
+    name = "sock-shop"
+  }
+}
 
 # Create kubectl deployment for socks app
 
