@@ -76,8 +76,11 @@ pipeline {
 
         stage("Deploy to EKS") {
             steps {
-                script {
-                    dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
+                when {
+                expression { choice == '3'}
+                    }
+                  script {
+                     dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
                         sh "aws eks update-kubeconfig --name myapp-eks-cluster"
                         sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
                         sh "kubectl apply -f ../../web/ --namespace web-namespace"
