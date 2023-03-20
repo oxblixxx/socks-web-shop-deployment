@@ -75,10 +75,12 @@ pipeline {
         // }       
 
         stage("Deploy to EKS") {
-            steps {
-                when {
+            when {
                 expression { choice == '4'}
-                    }
+                  }
+            
+              steps {
+                
                   script {
                      dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
                         sh "aws eks update-kubeconfig --name myapp-eks-cluster"
