@@ -12,7 +12,7 @@ pipeline {
                 script {
                     dir('jenkins-pipeline-deploy-to-eks/infrastructure') {
                         sh "terraform init"
-                        sh "terraform destroy -target=module.kms_alias"
+                        sh "terraform destroy -target=module.eks.kms_alias"
                         sh "terraform init -upgrade"
                         sh "terraform apply -auto-approve"
                     }
