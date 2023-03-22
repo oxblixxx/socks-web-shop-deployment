@@ -13,6 +13,7 @@ pipeline {
                     dir('jenkins-pipeline/infrastructure') {
                         sh "terraform init"
                         sh "terraform init -migrate-state"
+                        sh "terraform init -reconfigure"
                         sh "terraform apply -auto-approve"
                     }
                 }
@@ -25,6 +26,7 @@ pipeline {
                     dir('jenkins-pipeline/deployment') {
                         sh "terraform init"
                         sh "terraform init -migrate-state"
+                        sh "terraform init -reconfigure"
                         sh "terraform apply -auto-approve"
                     }
                 }
