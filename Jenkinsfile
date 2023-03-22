@@ -33,6 +33,19 @@ pipeline {
             }
         }
 
+         stage("monitoring") {
+            steps {
+                script {
+                    dir('jenkins-pipeline/monitoring') {
+                        // sh "terraform init"
+                        sh "terraform init -migrate-state -force-copy"
+                        // sh "terraform init -reconfigure"
+                        sh "terraform apply -auto-approve"
+                    }
+                }
+            }
+        }
+
         // stage('Create Namespace') {
         //     steps {
         //         script {
@@ -49,17 +62,17 @@ pipeline {
         //     }
         // }       
 
-        stage("Deploy to EKS") {
-            steps {
-                script {
-                    dir('jenkins-pipeline/kubernetes') {
-                        sh "aws eks update-kubeconfig --name myapp-eks-cluster"
-                        sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
-                        sh "kubectl apply -f ../../web/ --namespace web-namespace"
-                        // sh "kubectl apply -f nginx-service.yaml"
-                    }
-                }
-            }
-        }
+        // stage("Deploy to EKS") {
+        //     steps {
+        //         script {
+        //             dir('jenkins-pipeline/kubernetes') {
+        //                 sh "aws eks update-kubeconfig --name eks"
+        //                 sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
+        //                 sh "kubectl apply -f ../../web/ --namespace web-namespace"
+        //                 // sh "kubectl apply -f nginx-service.yaml"
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
