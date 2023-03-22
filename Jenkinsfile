@@ -11,20 +11,20 @@ pipeline {
             steps {
                 script {
                     dir('jenkins-pipeline/infrastructure') {
-                        // sh "terraform init"
+                        sh "terraform init"
                         sh "terraform init -migrate-state -force-copy"
                         // sh "terraform init -reconfigure"
                         sh "terraform apply -auto-approve"
+                        }
                     }
-                }
-            }
+             }
         }
 
          stage("deploy socks && web ]") {
             steps {
                 script {
                     dir('jenkins-pipeline/deployment') {
-                        // sh "terraform init"
+                        sh "terraform init"
                         sh "terraform init -migrate-state -force-copy"
                         // sh "terraform init -reconfigure"
                         sh "terraform apply -auto-approve"
