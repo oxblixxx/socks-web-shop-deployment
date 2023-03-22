@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-         stage("deploy socks && web ]") {
+         stage("deploy socks && web") {
             steps {
                 script {
                     dir('jenkins-pipeline/deployment') {
