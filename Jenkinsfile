@@ -18,16 +18,16 @@ pipeline {
             }
         }
 
-         stage("deploy socks && web") {
-            steps {
-                script {
-                    dir('jenkins-pipeline/deployment') {
-                        sh "terraform init"
-                        sh "terraform apply -auto-approve"
-                    }
-                }
-            }
-        }
+//          stage("deploy socks && web") {
+//           steps {
+//               script {
+//                   dir('jenkins-pipeline/deployment') {
+//                       sh "terraform init"
+//                       sh "terraform apply -auto-approve"
+//                    }
+//               }
+//            }
+//         }
 
         // stage('Create Namespace') {
         //     steps {
