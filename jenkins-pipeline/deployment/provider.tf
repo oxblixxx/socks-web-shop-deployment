@@ -43,5 +43,6 @@ provider "kubectl" {
     api_version = "client.authentication.k8s.io/v1alpha1"
     args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.eks-cluster.name]
     command     = "aws"
+    load_config_file = true
   }
 }
