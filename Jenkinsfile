@@ -21,7 +21,7 @@ pipeline {
          stage("deploy socks && web ]") {
             steps {
                 script {
-                    dir('jenkins-pipeline/terraform/deployment') {
+                    dir('jenkins-pipeline/deployment') {
                         sh "terraform init"
                         sh "terraform apply -auto-approve"
                     }
