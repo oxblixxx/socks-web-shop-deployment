@@ -51,7 +51,7 @@ resource "kubernetes_deployment" "web-deployment" {
 
 # Create kubernetes service for portfolio
 
-resource "kubernetes_service" "web-service-" {
+resource "kubernetes_service" "web-service" {
   metadata {
     name      = "web"
     namespace = kubernetes_namespace.web-namespace.id

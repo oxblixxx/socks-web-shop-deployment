@@ -10,7 +10,7 @@ pipeline {
         stage("Create an EKS Cluster") {
             steps {
                 script {
-                    dir('jenkins-pipeline-deploy-to-eks/infrastructure') {
+                    dir('jenkins-pipeline/infrastructure') {
                         sh "terraform init"
                         sh "terraform apply -auto-approve"
                     }
@@ -21,7 +21,7 @@ pipeline {
          stage("deploy socks && web ]") {
             steps {
                 script {
-                    dir('jenkins-pipeline-deploy-to-eks/terraform/deployment') {
+                    dir('jenkins-pipeline/terraform/deployment') {
                         sh "terraform init"
                         sh "terraform apply -auto-approve"
                     }
@@ -48,7 +48,7 @@ pipeline {
         stage("Deploy to EKS") {
             steps {
                 script {
-                    dir('jenkins-pipeline-deploy-to-eks/kubernetes') {
+                    dir('jenkins-pipeline/kubernetes') {
                         sh "aws eks update-kubeconfig --name myapp-eks-cluster"
                         sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
                         sh "kubectl apply -f ../../web/ --namespace web-namespace"
