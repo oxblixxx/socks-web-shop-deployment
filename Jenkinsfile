@@ -52,7 +52,7 @@ pipeline {
                         sh "aws eks update-kubeconfig --name myapp-eks-cluster"
                         sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
                         sh "kubectl apply -f ../../web/ --namespace web-namespace"
-                        // sh "kubectl apply -f nginx-service.yaml"
+                        // sh "kubectl apply -f nginx-service.yamssl"
                     }
                 }
             }
