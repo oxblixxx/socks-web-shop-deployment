@@ -4,7 +4,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-        AWS_DEFAULT_REGION = "us-east-1"
+        AWS_DEFAULT_REGION = "us-east-2"
     }
     stages {
         stage("Create an EKS Cluster") {
@@ -13,7 +13,8 @@ pipeline {
                     dir('jenkins-pipeline/infrastructure') {
                         sh "terraform init"
                         sh "terraform init -migrate-state -force-copy"
-                        // sh "terraform init -reconfigure"
+                        // sh "terraform init -reconfigur
+                   
                         sh "terraform apply -auto-approve"
                         }
                     }
