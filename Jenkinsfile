@@ -18,10 +18,11 @@ pipeline {
             }
         }
 
-         stage("deploy socks && web ]") {
+
+                stage("deploy monitoring") {
             steps {
                 script {
-                    dir('jenkins-pipeline/terraform/deployment') {
+                    dir('jenkins-pipeline/monitoring') {
                         sh "terraform init"
                         sh "terraform apply -auto-approve"
                     }
@@ -29,33 +30,36 @@ pipeline {
             }
         }
 
-        // stage('Create Namespace') {
-        //     steps {
-        //         script {
-        //         def namespace = 'sock-shop'
-        //         def namespaceExists = sh(script: "kubectl get namespace $namespace", returnStatus: true) == 0
-
-        //         if (namespaceExists) {
-        //             echo "Namespace already exists, skipping creation!!!!!"
-        //         } else {
-        //             sh "kubectl create namespace $namespace"
-        //             echo "Namespace created successfully now!"
-        //         }
-        //         }
-        //     }
-        // }       
-
-        stage("Deploy to EKS") {
+        stage("Deploy nginx app") {
             steps {
                 script {
-                    dir('jenkins-pipeline/kubernetes') {
-                        sh "aws eks update-kubeconfig --name myapp-eks-cluster"
-                        sh "kubectl apply -f eks-manifest.yaml --namespace sock-shop"
-                        sh "kubectl apply -f ../../web/ --namespace web-namespace"
-                        // sh "kubectl apply -f nginx-service.yaml"
+                    dir('jenkins-pipeline/web') {
+                        sh "kubectl apply -f web.yaml"
+                    }
+                }
+            }
+        }
+
+        stage("Deploy sock-shop to EKS") {
+            steps {
+                script {
+                    dir('sock-shop') {
+                        sh "kubectl apply -f complete-deployment.yaml"
+                    }
+                }
+            }
+        }
+
+        stage("Deploy ingress rule") {
+            steps {
+                script {
+                    dir('ingress-rule') {
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
                     }
                 }
             }
         }
     }
 }
+       
