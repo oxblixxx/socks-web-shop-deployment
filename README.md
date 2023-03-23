@@ -51,10 +51,10 @@ create a new item for pipeline, choose git. link this repo.
 
 Then build.
 
-![pipeline](slave/pipeline.jpg)
+![pipeline](pipeline.jpg)
 
 Here is my socks web deployment
-![socks-web](slave/socks.jpg)
+![socks-web](socks.jpg)
 
 here is my nginx deployment
 ![nginx](nginx.jpg)
@@ -63,5 +63,5 @@ here is my grafana
 
 ![](grafana.jpg)
 
-![ga]()
+![ga](grafa.jpg)
 
