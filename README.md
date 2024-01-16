@@ -30,7 +30,7 @@ terraform -version
 ```
 
 
-clone this repo, cd to jenkins-server directory. To see the configuration plan, run:
+clone this repo, cd to `jenkins-server` directory. To see the configuration plan, run:
 
 ```sh
 Terraform plan
