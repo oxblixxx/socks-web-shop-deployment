@@ -1,15 +1,10 @@
 # pipeline
 
-URL = oxlava.tech
-socks domain is [here](http://socks.oxlava.tech) and
-web domain is [here](http://web.oxlava.tech
-
-
-This code deploys a socks web app and nginx with a kubernetes cluster using :
+This code deploys the socks web app with nginx proxy server in a kubernetes cluster using :
 1. Terraform
 2. AWS
 3. Jenkins
-4. Prometheus
+4. Prometheus for monitoring
 5. Terraform
 
 # How to deploy the cluster
@@ -35,21 +30,30 @@ terraform -version
 ```
 
 
-clone this repo, cd to jenkins-server directory. Then run:
+clone this repo, cd to jenkins-server directory. To see the configuration plan, run:
 
+```sh
+Terraform plan
 ```
+
+To apply the configuration, run:
+
+```sh
 Terraform apply-auto approve
 ```
 
+
 Succesfully running that command, there is an output of the instance public ipv4 address.
 
-copy & paste that to your browser mapping it to port 8080.
+
+copy & paste that to your browser mapping it to port 8080 i.e `<public-address>:8080`
+
 
 Copy the password from your instance directory as prompted
 
-create a new item for pipeline, choose git. link this repo.
+create a new item for pipeline, choose git, add this repo as the source.
 
-Then build.
+Then run your  build.
 
 ![pipeline](pipeline.jpg)
 
