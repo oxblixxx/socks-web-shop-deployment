@@ -1,6 +1,6 @@
 # pipeline
 
-This code deploys the socks web app with nginx proxy server in a kubernetes cluster using :
+This code deploys the socks web app an open source project with nginx proxy server in a kubernetes cluster using :
 1. Terraform
 2. AWS
 3. Jenkins
