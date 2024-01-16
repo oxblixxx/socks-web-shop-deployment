@@ -51,7 +51,7 @@ copy & paste that to your browser mapping it to port 8080 i.e `<public-address>:
 
 Copy the password from your instance directory as prompted
 
-create a new item for pipeline, choose git, add this repo as the source.
+create a new item for pipeline, choose git, add this repo as the source. Here is the [Jenkinsfile](https://github.com/oxblixxx/socks-web-shop-deployment/blob/slave/Jenkinsfile) to run the pipeline from
 
 Then run your  build.
 
