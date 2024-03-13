@@ -1,6 +1,6 @@
 variable "mysql-password" {
   type        = string
-  description = "name of the docker image to deploy"
+  description = "Password to login"
   default     = "general"
 }
 

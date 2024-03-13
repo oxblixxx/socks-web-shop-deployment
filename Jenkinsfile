@@ -19,7 +19,7 @@ pipeline {
         }
 
 
-                stage("deploy monitoring") {
+        stage("deploy monitoring") {
             steps {
                 script {
                     dir('jenkins-pipeline/monitoring') {

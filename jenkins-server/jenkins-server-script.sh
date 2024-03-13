@@ -1,25 +1,32 @@
 #!/bin/bash
 
-# install jenkins
+# install java
+sudo apt update -y
+sudo apt install fontconfig openjdk-17-jre -y
+java -version
+openjdk version "17.0.8" 2023-07-18
+OpenJDK Runtime Environment (build 17.0.8+7-Debian-1deb12u1)
+OpenJDK 64-Bit Server VM (build 17.0.8+7-Debian-1deb12u1, mixed mode, sharing)
 
-sudo yum update
-sudo wget -O /etc/yum.repos.d/jenkins.repo \
-    https://pkg.jenkins.io/redhat-stable/jenkins.repo
-sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-sudo yum upgrade -y
-sudo amazon-linux-extras install java-openjdk11 -y
-sudo yum install jenkins -y
-sudo systemctl enable jenkins
-sudo systemctl start jenkins
+# install jenkins
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+# Add a delay of 2 seconds
+sleep 2
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+# Add a delay of 2 seconds
+sleep 2
+sudo apt update -y
+sudo apt install jenkins -y
+
 
 # install git
-sudo yum install git -y
+sudo apt install git -y
 
 # install terraform
-
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-sudo yum -y install terraform
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update -y && sudo apt install terraform -y
+terraform
 
 # install kubectl
 
