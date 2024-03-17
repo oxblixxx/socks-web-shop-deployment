@@ -1,13 +1,13 @@
+# https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest
 module "eks" {
     source  = "terraform-aws-modules/eks/aws"
-    version = "~> 19.0"
+    version = "20.8.3"
     cluster_name = "socks-web-shop"
     cluster_version = "1.24"
 
     cluster_endpoint_public_access  = true
-
     vpc_id = module.myapp-vpc.vpc_id
-    subnet_ids = module.myapp-vpc.public_subnets
+    subnet_ids = [module.myapp-vpc.public_subnets[0], module.myapp-vpc.public_subnets[1]]
 
     tags = {
         environment = "development"
@@ -23,7 +23,7 @@ module "eks" {
             instance_types = ["t3.medium"]
         }
     }
-
+    depends_on = [ module.myapp-vpc.public_subnets ]
    
 }
 
