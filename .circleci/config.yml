@@ -6,18 +6,20 @@
 version: 2.1
 jobs:    
   build-infrastructure:
+    working_directory: /infrastructure
     docker:
-       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
-       - checkout
-       - attach_workspace:
-           at: .
-       - run:
-          name: EKS infrastructure build
-          working_directory: ../infrastructure
+      - checkout
+      - run:
+          name: terraform init & plan
           command: |
-            echo $(pwd)
-      #       terraform init
+            terraform init -input=false
+            terraform plan -out tfapply -var-file terraform.tfvars
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .  #       terraform init
       #       terraform apply -auto-approve
       # # - persist_to_workspace:
       #     root: .
