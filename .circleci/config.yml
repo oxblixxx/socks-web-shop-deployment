@@ -6,7 +6,7 @@
 version: 2.1
 jobs:    
   build-infrastructure:
-    working_directory: ../infrastructure
+    working_directory: $INFRASTRUCTURE_DIR
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
@@ -17,10 +17,10 @@ jobs:
           command: |
             terraform init -input=false
             terraform apply -auto-approve
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - .
 
   # build:
   #   docker:
