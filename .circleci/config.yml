@@ -6,16 +6,15 @@
 version: 2.1
 jobs:    
   build-infrastructure:
-    working_directory: ~/infrastructure
     docker:
        - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
-    - checkout
+       - checkout
        - attach_workspace:
            at: .
        - run:
           name: EKS infrastructure build
-          working_directory: ~/infrastructure
+          working_directory: ../infrastructure
           command: |
             echo $(pwd)
       #       terraform init
