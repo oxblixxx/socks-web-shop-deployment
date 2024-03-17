@@ -42,7 +42,7 @@ jobs:
 
 # # Orchestrate jobs using workflows
 workflows:
-  build:
+  build infrastructure:
     jobs:
       - build infrastructure
       # - build:
