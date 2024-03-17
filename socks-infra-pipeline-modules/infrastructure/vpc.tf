@@ -1,16 +1,17 @@
 data "aws_availability_zones" "azs" {}
-module "myapp-vpc" {
-  source          = "terraform-aws-modules/vpc/aws"
-  version         = "3.19.0"
-  name            = "myapp-vpc"
-  cidr            = var.vpc_cidr_block
-  private_subnets = var.private_subnet_cidr_blocks
-  public_subnets  = var.public_subnet_cidr_blocks
-  azs             = data.aws_availability_zones.azs.names
 
-  enable_nat_gateway   = true
-  single_nat_gateway   = true
-  enable_dns_hostnames = true
+module "myapp-vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+  version = "5.6.0"
+  name = "my-vpc"
+  cidr = "10.10.0.0/28"
+
+  azs             = ["us-west-2a", "us-west-2b"]
+  private_subnets = ["10.10.0.0/29"]
+  public_subnets  = ["10.10.0.16/29"]
+
+  enable_nat_gateway = true
+  enable_vpn_gateway = true
 
   tags = {
     "kubernetes.io/cluster/socks-web-shop" = "shared"
