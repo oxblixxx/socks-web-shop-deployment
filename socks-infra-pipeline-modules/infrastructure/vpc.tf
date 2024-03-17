@@ -4,11 +4,11 @@ module "myapp-vpc" {
   source = "terraform-aws-modules/vpc/aws"
   version = "5.6.0"
   name = "my-vpc"
-  cidr = "10.10.0.0/29"
+  cidr = "10.10.0.0/28"
 
   azs             = ["us-west-2a", "us-west-2b"]
-  private_subnets = ["10.10.0.1/29"]
-  public_subnets  = ["10.10.0.9/29"]
+  private_subnets = ["10.10.0.160/28"]
+  public_subnets  = ["10.10.0.176/28"]
 
   enable_nat_gateway = true
   enable_vpn_gateway = true
