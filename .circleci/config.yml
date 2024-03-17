@@ -44,7 +44,7 @@ jobs:
 workflows:
   build-infrastructure:
     jobs:
-      - build infrastructure
+      - build-infrastructure
       # - build:
       #     requires:
       #       - build infrastructure
