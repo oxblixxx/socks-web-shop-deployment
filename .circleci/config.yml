@@ -10,6 +10,7 @@ jobs:
     docker:
        - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
+    - checkout
        - attach_workspace:
            at: .
        - run:
@@ -17,9 +18,9 @@ jobs:
           working_directory: ~/infrastructure
           command: |
             echo $(pwd)
-            terraform init
-            terraform apply -auto-approve
-      # - persist_to_workspace:
+      #       terraform init
+      #       terraform apply -auto-approve
+      # # - persist_to_workspace:
       #     root: .
       #     paths:
       #       - .
