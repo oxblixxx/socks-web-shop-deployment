@@ -7,8 +7,8 @@ module "myapp-vpc" {
   cidr = "10.10.0.0/28"
 
   azs             = ["us-west-2a", "us-west-2b"]
-  private_subnets = ["10.10.0.0/29"]
-  public_subnets  = ["10.10.0.16/29"]
+  private_subnets = ["10.10.0.0/28"]
+  public_subnets  = ["10.10.0.16/28"]
 
   enable_nat_gateway = true
   enable_vpn_gateway = true
