@@ -4,7 +4,7 @@ module "myapp-vpc" {
   source = "terraform-aws-modules/vpc/aws"
   version = "5.6.0"
   name = "my-vpc"
-  cidr = "10.10.0.0/28"
+  cidr = "10.10.0.0/27"
 
   azs             = ["us-west-2a", "us-west-2b"]
   private_subnets = ["10.10.0.160/28"]
