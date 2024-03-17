@@ -6,7 +6,7 @@
 version: 2.1
 jobs:    
   build-infrastructure:
-    working_directory: /infrastructure
+    # working_directory: /infrastructure
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
@@ -14,12 +14,16 @@ jobs:
       - run:
           name: terraform init & plan
           command: |
-            terraform init -input=false
-            terraform plan -out tfapply -var-file terraform.tfvars
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .  #       terraform init
+            echo $(pwd)
+            find . -name "infrastructure" -type d
+
+      #       cd infrastructure
+      #       terraform init -input=false
+      #       terraform plan -out tfapply -var-file terraform.tfvars
+      # - persist_to_workspace:
+          # root: .
+          # paths:
+              #       terraform init
       #       terraform apply -auto-approve
       # # - persist_to_workspace:
       #     root: .
