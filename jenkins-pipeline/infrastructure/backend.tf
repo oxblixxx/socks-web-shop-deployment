@@ -1,7 +1,7 @@
-# terraform {
-#   backend "s3" {
-#     bucket = "primuslearning-app"
-#     region = "us-east-1"
-#     key = "eks/terraform.tfstate"
-#   }
-# }
+terraform {
+     backend "s3" {
+     bucket = "socks-webshop-oxblixxx-project"
+     region = "us-west-2"
+     key = "infrastructre/terraform.tfstate"
+   }
+}
