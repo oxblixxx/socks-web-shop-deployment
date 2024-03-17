@@ -16,7 +16,7 @@ jobs:
           name: EKS infrastructure build
           command: |
             terraform init -input=false
-            terraform apply -auto-approve -var-file=variables.tfvars
+            terraform apply -auto-approve
       - persist_to_workspace:
           root: .
           paths:
