@@ -8,15 +8,15 @@ jobs:
   build-infrastructure:
     working_directory: ~/infrastructure
     docker:
-      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: EKS infrastructure build
-          command: |
-            terraform init
-            terraform apply -auto-approve
+      #  - attach_workspace:
+      #      at: .
+       - run: echo "Current working directory: $(pwd)"
+          # name: EKS infrastructure build
+          # command: |
+          #   terraform init
+          #   terraform apply -auto-approve
       # - persist_to_workspace:
       #     root: .
       #     paths:
