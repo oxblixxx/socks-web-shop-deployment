@@ -70,6 +70,7 @@ workflows:
   build-infrastructure:
     jobs:
       - build-infrastructure
+      - build-deployment
       # - build:
       #     requires:
       #       - build infrastructure
