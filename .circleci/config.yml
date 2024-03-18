@@ -31,9 +31,6 @@ jobs:
       - run:
           name: terraform init & plan
           command: |
-            apt-get install -y awscli
-            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KE
             cd deployment
             terraform init -input=false
             terraform apply --auto-approve

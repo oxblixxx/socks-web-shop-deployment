@@ -3,6 +3,6 @@ module "eks-infrastructure" {
 }
 
 provider "aws" {
-    access_key = vaar.AWS_ACCESS_KEY_ID
+    access_key = var.AWS_ACCESS_KEY_ID
     secret_key = var.AWS_SECRET_KEY_ID
 }
