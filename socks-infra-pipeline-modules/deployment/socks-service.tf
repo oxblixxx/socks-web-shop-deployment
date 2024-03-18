@@ -40,14 +40,14 @@ resource "kubernetes_namespace" "kube-namespace-socks" {
 
 # Create kubectl deployment for socks app
 
-data "kubectl_file_documents" "docs" {
-    content = file("eks-manifest.yaml")
-}
+# data "kubectl_file_documents" "docs" {
+#     content = file("eks-manifest.yaml")
+# }
 
-resource "kubectl_manifest" "kube-deployment-socks" {
-    for_each  = data.kubectl_file_documents.docs.manifests
-    yaml_body = each.value
-}
+# resource "kubectl_manifest" "kube-deployment-socks" {
+#     for_each  = data.kubectl_file_documents.docs.manifests
+#     yaml_body = each.value
+# }
 
 # Create separate kubernetes service for socks shop frontend
 
