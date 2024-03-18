@@ -44,9 +44,9 @@ workflows:
   build-sock-app:
     jobs:
       - build-infrastructure
-      - build-deployment
-          # requires:
-          #   - build-infrastructure
+      - build-deployment:
+           requires:
+             - build-infrastructure
 
 #       # - deploy:
       # - build:
