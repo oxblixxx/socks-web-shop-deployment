@@ -21,6 +21,25 @@ jobs:
           root: .
           paths: 
             - .
+  
+  build-deployment:
+    working_directory: ./deployment
+    docker:
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - checkout
+      - run:
+          name: terraform init & plan
+          command: |
+            cd deployment
+            terraform init -input=false
+            terraform apply --auto-approve
+      - persist_to_workspace:
+          root: .
+          paths: 
+            - .
+      
+      
       #               terraform init
       # #       terraform apply -auto-approve
       # # - persist_to_workspace:
