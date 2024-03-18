@@ -33,7 +33,7 @@ jobs:
           command: |
             cd deployment
             terraform init -input=false
-            terraform plan -var "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" -var "AWS_SECRET_KEY_ID=$AWS_SECRET_KEY_ID"
+            terraform plan -var "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" -var "AWS_SECRET_KEY_ID=$AWS_SECRET_KEY"
       - persist_to_workspace:
           root: .
           paths: 
