@@ -16,7 +16,7 @@ jobs:
           command: |
             cd infrastructure
             terraform init -input=false
-            terraform apply --auto-approve
+            terraform destroy --auto-approve
       - persist_to_workspace:
           root: .
           paths: 
