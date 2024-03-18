@@ -41,13 +41,12 @@ jobs:
     
 # # Orchestrate jobs using workflows
 workflows:
-  build-infrastructure:
+  build-and-deploy: 
     jobs:
-      - build-infrastructure
-      - build-deployment
+      - build-infrastructure:
+      - build-deployment:
           requires:
-              - build-infrastructure
-      # - deploy:
+            - build-infrastructure  
       # - build:
       #     requires:
       #       - test
