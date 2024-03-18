@@ -22,7 +22,6 @@ terraform {
 provider "kubernetes" {
   host                   = data.aws_eks_cluster.eks-cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks-cluster.certificate_authority[0].data)
-  version = "2.27.0"
 
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
@@ -32,16 +31,3 @@ provider "kubernetes" {
 }
 
 # Kubectl provider configuration
-
-
-
-
-provider "kubectl" {
-  host                   = data.aws_eks_cluster.eks-cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks-cluster.certificate_authority[0].data)
-  exec {
-    api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.eks-cluster.name]
-    command     = "aws"
-  }
-}
