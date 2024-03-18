@@ -38,33 +38,7 @@ jobs:
           root: .
           paths: 
             - .
-      
-      
-      #               terraform init
-      # #       terraform apply -auto-approve
-      # # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - .
-
-  # build:
-  #   docker:
-  #     - image: cimg/base:current
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Build an artifact
-  #         command: touch example.txt
-  #     - store_artifacts:
-  #         path: example.txt
-  # deploy:
-  #   docker:
-  #     - image: cimg/base:current
-  #   steps:
-  #     - run:
-  #         name: deploy
-  #         command: "#e.g. ./deploy.sh"
-
+    
 # # Orchestrate jobs using workflows
 workflows:
   build-infrastructure:
@@ -72,7 +46,7 @@ workflows:
       - build-infrastructure
       - build-deployment
           requires:
-            - build infrastructure
+              - build infrastructure
       # - deploy:
       # - build:
       #     requires:
