@@ -46,7 +46,8 @@ workflows:
       - build-infrastructure:
       - build-deployment:
           requires:
-              - build infrastructure
+            - build-infrastructure
+
 #       # - deploy:
       # - build:
       #     requires:
