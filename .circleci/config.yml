@@ -33,7 +33,7 @@ jobs:
           command: |
             cd deployment
             terraform init -input=false
-            terraform apply --auto-approve
+            terraform apply -var "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" -var "AWS_SECRET_KEY_ID=$AWS_SECRET_KEY_ID"
       - persist_to_workspace:
           root: .
           paths: 
