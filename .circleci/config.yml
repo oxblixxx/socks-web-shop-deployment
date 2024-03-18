@@ -40,23 +40,23 @@ jobs:
             - .
     
 # # Orchestrate jobs using workflows
-# workflows:
-#   build-infrastructure:
-#     jobs:
-#       - build-infrastructure
-#       - build-deployment
-#           requires:
-#               - build infrastructure
+workflows:
+  build-sock-app:
+    jobs:
+      - build-infrastructure:
+      - build-deployment:
+          requires:
+              - build infrastructure
 #       # - deploy:
       # - build:
       #     requires:
       #       - test
 
 
-workflows:
-  build-infrastructure: 
-    jobs:
-      - build-infrastructure:
-      - build-deployment:
-          requires:
-            - build-infrastructure  
+# workflows:
+#   build-infrastructure: 
+#     jobs:
+#       - build-infrastructure:
+#       - build-deployment:
+#           requires:
+#             - build-infrastructure  
