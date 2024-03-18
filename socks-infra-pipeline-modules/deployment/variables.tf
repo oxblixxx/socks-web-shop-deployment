@@ -9,12 +9,3 @@ variable "docker-image" {
   description = "docker image"
   default     = "oxblixxx/web"
 }
-
-
-variable "AWS_ACCESS_KEY_ID" {
-  
-}
-
-variable "AWS_SECRET_KEY" {
-  
-}
