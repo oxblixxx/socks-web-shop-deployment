@@ -28,7 +28,7 @@ module "eks" {
 }
 
 data "aws_eks_cluster" "eks_cluster" {
-    name = module.eks.cluster_id
+    name = module.eks.socks-web-shop
 }
 
 #data "aws_eks_cluster_auth" "cluster_auth" {
