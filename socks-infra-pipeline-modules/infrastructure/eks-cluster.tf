@@ -27,15 +27,13 @@ module "eks" {
    
 }
 
-# resource "kubernetes_namespace" "sock-shop" {
-#   metadata {
-#     name = "sock-shop"
-#   }
+data "aws_eks_cluster" "eks_cluster_id" {
+    name = module.eks.cluster_id
+}
 
-#   lifecycle {
-#     ignore_changes = [metadata]
-#   }
-# }
+#data "aws_eks_cluster_auth" "cluster_auth" {
+#    name = module.eks.cluster_id
+#}
 
  output "eks-cluster" {
         value = module.eks.cluster_name
