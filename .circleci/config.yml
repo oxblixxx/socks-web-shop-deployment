@@ -32,6 +32,7 @@ jobs:
           name: terraform init & plan
           command: |
             cd socks-infra-pipeline-modules/deployment
+            terraform state rm module.eks.kubernetes_config_map.aws_auth
             terraform init -input=false
             terraform apply --auto-approve
       - persist_to_workspace:
