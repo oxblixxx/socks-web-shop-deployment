@@ -31,7 +31,7 @@ jobs:
       - run:
           name: terraform init & plan
           command: |
-            cd ./socks-infra-pipeline-modeules/deployments
+            cd socks-infra-pipeline-modules/deployment
             terraform init -input=false
             terraform apply --auto-approve
       - persist_to_workspace:
