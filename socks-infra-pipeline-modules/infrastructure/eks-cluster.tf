@@ -27,7 +27,7 @@ module "eks" {
    
 }
 
-data "aws_eks_cluster" "eks_cluster_id" {
+data "aws_eks_cluster" "eks_cluster" {
     name = module.eks.cluster_id
 }
 
