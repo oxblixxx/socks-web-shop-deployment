@@ -1,6 +1,9 @@
 provider "aws" {
   region = "us-west-2"
-#  other provider settings here
+}
+
+data "aws_eks_cluster" "eks-cluster" {
+  name = "socks-web-shop"
 }
 
 terraform {
