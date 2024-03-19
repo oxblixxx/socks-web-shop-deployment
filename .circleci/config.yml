@@ -33,6 +33,7 @@ jobs:
           command: |
             cd socks-infra-pipeline-modules/deployment
             terraform init -input=false
+            terraform state rm module.eks.kubernetes_config_map.aws_auth
             terraform apply --auto-approve
       - persist_to_workspace:
           root: .
