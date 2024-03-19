@@ -6,12 +6,12 @@ provider "aws" {
 
 
 provider "kubernetes" {
-  host                   = module.eks.endpoint
-  cluster_ca_certificate = base64decode(module.eks.certificate_authority[0].data)
+  host                   = data.aws_eks_cluster.eks_cluster_id.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks_cluster_id.certificate_authority[0].data)
 
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", module.eks.eks-cluster.name]
+    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.eks_cluster_id.id]
     command     = "aws"
   }
 }
