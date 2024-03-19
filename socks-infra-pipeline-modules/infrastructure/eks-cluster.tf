@@ -13,7 +13,7 @@ module "eks" {
         environment = "development"
         application = "myapp"
     }
-    manage_aws_auth = false
+#    manage_aws_auth = false
 #    write_kubeconfig = true
     eks_managed_node_groups = {
         dev = {
