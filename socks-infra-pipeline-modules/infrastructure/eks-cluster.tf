@@ -13,7 +13,7 @@ module "eks" {
         environment = "development"
         application = "myapp"
     }
-
+    write_kubeconfig = true
     eks_managed_node_groups = {
         dev = {
             min_size = 1
