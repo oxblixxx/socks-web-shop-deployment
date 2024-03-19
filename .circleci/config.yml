@@ -23,7 +23,7 @@ jobs:
             - .
   
   build-deployment:
-    working_directory: ./deployment
+    working_directory: ./socks-infra-pipeline-modeules/deployments
     docker:
       - image: cimg/aws:2024.03
     steps:
